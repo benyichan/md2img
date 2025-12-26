@@ -1,0 +1,834 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #cccccc;
+    font-size: 1.1em;
+}
+
+.app-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* 左侧输入区域 */
+.input-section {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    color: #00ffff;
+    border-bottom: 2px solid rgba(0, 255, 255, 0.5);
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+
+#markdown-input {
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#markdown-input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* 样式设置区域 */
+.style-settings {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.style-settings h3 {
+    color: #00ffff;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.setting-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting-group label {
+    min-width: 100px;
+    color: #cccccc;
+}
+
+.setting-group select,
+.setting-group input[type="range"] {
+    flex: 1;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 5px;
+    color: #ffffff;
+    outline: none;
+}
+
+.setting-group select:focus {
+    border-color: #00ffff;
+}
+
+.setting-group span {
+    color: #00ffff;
+    font-weight: bold;
+    min-width: 50px;
+    text-align: right;
+}
+
+/* 按钮样式 */
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #00ffff, #0080ff);
+    color: #000000;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0080ff, #00ffff);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #ff0080, #8000ff);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #8000ff, #ff0080);
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.8);
+    transform: translateY(-2px);
+}
+
+/* 右侧输出区域 */
+.output-section {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.preview-container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    overflow: hidden;
+    min-height: 400px;
+}
+
+/* Markdown内容容器 - 科技风格主题 */
+.markdown-content {
+    width: 100%;
+    min-height: 300px;
+    padding: 40px;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 赛博朋克主题 */
+.markdown-content.cyberpunk {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+}
+
+.markdown-content.cyberpunk::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 255, 0.1),
+        rgba(0, 255, 255, 0.1) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+    pointer-events: none;
+}
+
+/* 霓虹主题 */
+.markdown-content.neon {
+    background: linear-gradient(135deg, #000033 0%, #000066 100%);
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 50px rgba(255, 0, 255, 0.5);
+}
+
+.markdown-content.neon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.2), transparent 70%);
+    pointer-events: none;
+}
+
+/* 矩阵风格 */
+.markdown-content.matrix {
+    background: #000000;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.3);
+}
+
+.markdown-content.matrix::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(0, 255, 0, 0.1),
+        rgba(0, 255, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 50px
+    ),
+    repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.1),
+        rgba(0, 255, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 50px
+    );
+    pointer-events: none;
+}
+
+/* 极简科技主题 */
+.markdown-content.minimal-tech {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 2px solid #4a90e2;
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.2);
+}
+
+/* 杂志和海报风格主题 */
+
+/* 现代杂志风格 */
+.markdown-content.magazine-modern {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    border: 2px solid #000000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    color: #000000;
+}
+
+.markdown-content.magazine-modern h1 {
+    color: #000000;
+    text-shadow: none;
+    border-bottom: 4px solid #000000;
+    font-family: 'Georgia', serif;
+    letter-spacing: -1px;
+}
+
+.markdown-content.magazine-modern h2 {
+    color: #333333;
+    text-shadow: none;
+    font-family: 'Georgia', serif;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.markdown-content.magazine-modern p {
+    color: #333333;
+    font-family: 'Georgia', serif;
+    line-height: 2;
+}
+
+/* 复古杂志风格 */
+.markdown-content.magazine-vintage {
+    background: linear-gradient(135deg, #f4e8c1 0%, #e6d4a7 100%);
+    border: 3px solid #8b4513;
+    box-shadow: 0 15px 40px rgba(139, 69, 19, 0.2);
+    color: #5a380c;
+}
+
+.markdown-content.magazine-vintage h1 {
+    color: #8b4513;
+    text-shadow: none;
+    border-bottom: 3px solid #8b4513;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+}
+
+.markdown-content.magazine-vintage h2 {
+    color: #a0522d;
+    text-shadow: none;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+.markdown-content.magazine-vintage p {
+    color: #5a380c;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.9;
+}
+
+/* 大胆海报风格 */
+.markdown-content.poster-bold {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    border: 4px solid #000000;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+}
+
+.markdown-content.poster-bold h1 {
+    color: #ffffff;
+    text-shadow: 5px 5px 0px #000000;
+    border-bottom: none;
+    font-family: 'Impact', sans-serif;
+    font-size: 3.5em;
+    letter-spacing: 2px;
+}
+
+.markdown-content.poster-bold h2 {
+    color: #ffff00;
+    text-shadow: 3px 3px 0px #000000;
+    font-family: 'Impact', sans-serif;
+    font-size: 2.5em;
+}
+
+.markdown-content.poster-bold p {
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 2;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* 艺术海报风格 */
+.markdown-content.poster-artistic {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.markdown-content.poster-artistic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.markdown-content.poster-artistic h1 {
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    border-bottom: none;
+    font-family: 'Georgia', serif;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.markdown-content.poster-artistic h2 {
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    font-family: 'Georgia', serif;
+    font-size: 2em;
+}
+
+.markdown-content.poster-artistic p {
+    color: #ffffff;
+    font-family: 'Georgia', serif;
+    line-height: 2;
+    font-size: 1.1em;
+}
+
+/* 布局样式 */
+
+/* 居中海报布局 */
+.markdown-content.poster-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+}
+
+/* 左对齐海报布局 */
+.markdown-content.poster-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 60px 80px;
+}
+
+/* 网格布局 */
+.markdown-content.poster-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 60px;
+}
+
+.markdown-content.poster-grid h1 {
+    grid-column: 1 / -1;
+}
+
+.markdown-content.poster-grid h2 {
+    grid-column: 1 / -1;
+}
+
+/* 杂志内页布局 */
+.markdown-content.magazine-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 40px;
+    background: #ffffff;
+    color: #000000;
+}
+
+.markdown-content.magazine-spread::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, #e0e0e0 0%, #ffffff 100%);
+    pointer-events: none;
+}
+
+.markdown-content.magazine-spread h1 {
+    grid-column: 1 / -1;
+    color: #000000;
+    text-shadow: none;
+    border-bottom: 2px solid #000000;
+}
+
+.markdown-content.magazine-spread p {
+    color: #333333;
+    line-height: 1.8;
+}
+
+/* 署名样式 */
+.signature {
+    position: absolute;
+    font-size: 14px;
+    font-style: italic;
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.signature.bottom-right {
+    bottom: 20px;
+    right: 30px;
+}
+
+.signature.bottom-left {
+    bottom: 20px;
+    left: 30px;
+}
+
+.signature.top-right {
+    top: 20px;
+    right: 30px;
+}
+
+.signature.top-left {
+    top: 20px;
+    left: 30px;
+}
+
+/* 居中对齐的署名样式 */
+.signature.bottom-center {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.signature.top-center {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 色彩方案 */
+.markdown-content.monochrome {
+    filter: grayscale(100%);
+}
+
+.markdown-content.complementary {
+    /* 互补色方案将通过JavaScript动态应用 */
+}
+
+.markdown-content.analogous {
+    /* 类似色方案将通过JavaScript动态应用 */
+}
+
+.markdown-content.triadic {
+    /* 三角色方案将通过JavaScript动态应用 */
+}
+
+.markdown-content.custom-colors {
+    /* 自定义颜色将通过JavaScript动态应用 */
+}
+
+/* Markdown内容样式 */
+.markdown-content h1 {
+    color: #00ffff;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    border-bottom: 3px solid rgba(0, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.markdown-content h2 {
+    color: #00ff80;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 2em;
+    text-shadow: 0 0 15px rgba(0, 255, 128, 0.6);
+}
+
+.markdown-content h3 {
+    color: #ff8000;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.markdown-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #cccccc;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.markdown-content li {
+    margin-bottom: 8px;
+    color: #cccccc;
+    position: relative;
+}
+
+.markdown-content ul li::before {
+    content: '▶';
+    color: #00ffff;
+    position: absolute;
+    left: -20px;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid #00ffff;
+    padding-left: 20px;
+    margin: 20px 0;
+    color: #aaaaaa;
+    font-style: italic;
+    background: rgba(0, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 0 10px 10px 0;
+}
+
+.markdown-content code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    color: #ff8000;
+    border: 1px solid rgba(255, 128, 0, 0.3);
+}
+
+.markdown-content pre {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.markdown-content pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: #00ff80;
+}
+
+.markdown-content a {
+    color: #00ffff;
+    text-decoration: none;
+    border-bottom: 1px solid #00ffff;
+    transition: all 0.3s ease;
+}
+
+.markdown-content a:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* 元素方案样式 */
+.element-schemes {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.element-schemes h3 {
+    color: #00ffff;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.element-schemes h4 {
+    color: #00ff80;
+    margin-bottom: 10px;
+    font-size: 1em;
+    margin-top: 15px;
+}
+
+.scheme-preview {
+    width: 100%;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scheme-preview::after {
+    content: '预览将显示在此处';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+}
+
+.custom-scheme-controls {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    display: none;
+}
+
+/* 装饰元素样式 */
+.decorative-element {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.8;
+}
+
+/* 直线 */
+.decorative-line {
+    background-color: #00ffff;
+    border: none;
+}
+
+/* 虚线 */
+.decorative-dashed-line {
+    background-color: transparent;
+    border: 2px dashed #00ffff;
+}
+
+/* 圆形 */
+.decorative-circle {
+    background-color: #00ffff;
+    border-radius: 50%;
+}
+
+/* 方形 */
+.decorative-square {
+    background-color: #00ffff;
+    border-radius: 5px;
+}
+
+/* 三角形 */
+.decorative-triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid #00ffff;
+    background-color: transparent;
+}
+
+/* 点 */
+.decorative-dot {
+    background-color: #00ffff;
+    border-radius: 50%;
+}
+
+/* 装饰元素控制面板样式 */
+.decorative-elements {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.decorative-elements h3 {
+    color: #00ffff;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.decor-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+/* 导出图片显示区域 */
+.exported-image {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    text-align: center;
+    min-height: 100px;
+}
+
+.exported-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .app-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .input-section,
+    .output-section {
+        padding: 15px;
+    }
+    
+    .markdown-content {
+        padding: 20px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}

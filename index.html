@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科技风格Markdown图片生成器</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>科技风格Markdown图片生成器</h1>
+            <p>将Markdown文本转换为炫酷的科技风格分享图片</p>
+        </header>
+
+        <main class="app-main">
+            <!-- 左侧输入区域 -->
+            <div class="input-section">
+                <div class="section-header">
+                    <h2>Markdown输入</h2>
+                </div>
+                <textarea id="markdown-input" placeholder="请输入Markdown格式的文本内容...
+
+示例：
+# 科技前沿
+## AI的未来发展
+- 机器学习
+- 深度学习
+- 自然语言处理
+
+> 科技改变世界"></textarea>
+
+                <!-- 样式设置 -->
+                <div class="style-settings">
+                    <h3>样式设置</h3>
+                    
+                    <!-- 基础样式设置 -->
+                    <div class="setting-group">
+                        <label for="theme-select">主题模板：</label>
+                        <select id="theme-select">
+                            <option value="cyberpunk">赛博朋克</option>
+                            <option value="neon">霓虹科技</option>
+                            <option value="matrix">矩阵风格</option>
+                            <option value="minimal-tech">极简科技</option>
+                            <option value="magazine-modern">现代杂志</option>
+                            <option value="magazine-vintage">复古杂志</option>
+                            <option value="poster-bold">大胆海报</option>
+                            <option value="poster-artistic">艺术海报</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 海报布局设置 -->
+                    <div class="setting-group">
+                        <label for="layout-select">布局样式：</label>
+                        <select id="layout-select">
+                            <option value="default">默认布局</option>
+                            <option value="poster-center">居中海报</option>
+                            <option value="poster-left">左对齐海报</option>
+                            <option value="poster-grid">网格布局</option>
+                            <option value="magazine-spread">杂志内页</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 色彩搭配 -->
+                    <div class="setting-group">
+                        <label for="color-scheme">色彩方案：</label>
+                        <select id="color-scheme">
+                            <option value="default">默认配色</option>
+                            <option value="monochrome">黑白单色</option>
+                            <option value="complementary">互补色</option>
+                            <option value="analogous">类似色</option>
+                            <option value="triadic">三角色</option>
+                            <option value="custom">自定义</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 自定义颜色 -->
+                    <div class="setting-group" id="custom-colors" style="display: none;">
+                        <label>自定义颜色：</label>
+                        <div style="display: flex; gap: 10px; margin-top: 5px;">
+                            <div>
+                                <label style="font-size: 12px;">背景色：</label>
+                                <input type="color" id="bg-color" value="#1a1a2e">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px;">主色：</label>
+                                <input type="color" id="primary-color" value="#00ffff">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px;">强调色：</label>
+                                <input type="color" id="accent-color" value="#ff0080">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 字体设置 -->
+                    <div class="setting-group">
+                        <label for="font-family">字体选择：</label>
+                        <select id="font-family">
+                            <option value="'Courier New', monospace">等宽字体</option>
+                            <option value="'Arial', sans-serif">Arial</option>
+                            <option value="'Microsoft YaHei', sans-serif">微软雅黑</option>
+                            <option value="'SimHei', sans-serif">黑体</option>
+                            <option value="'Georgia', serif">Georgia</option>
+                            <option value="'Times New Roman', serif">Times New Roman</option>
+                            <option value="'Impact', sans-serif">Impact</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label for="font-size">字体大小：</label>
+                        <input type="range" id="font-size" min="12" max="24" value="16">
+                        <span id="font-size-value">16px</span>
+                    </div>
+                    
+                    <!-- 署名设置 -->
+                    <div class="setting-group">
+                        <label for="signature">添加署名：</label>
+                        <input type="text" id="signature" placeholder="输入您的署名或品牌名">
+                    </div>
+                    <div class="setting-group">
+                        <label for="signature-position">署名位置：</label>
+                        <select id="signature-position">
+                            <option value="bottom-right">右下角</option>
+                            <option value="bottom-left">左下角</option>
+                            <option value="top-right">右上角</option>
+                            <option value="top-left">左上角</option>
+                            <option value="bottom-center">底部居中</option>
+                            <option value="top-center">顶部居中</option>
+                        </select>
+                    </div>
+
+                    <!-- 元素方案设置 -->
+                    <div class="element-schemes">
+                        <h3>元素方案</h3>
+                        
+                        <div class="setting-group">
+                            <label for="scheme-select">方案选择：</label>
+                            <select id="scheme-select">
+                                <option value="none">无方案</option>
+                                <option value="tech-grid">科技网格</option>
+                                <option value="neon-pattern">霓虹图案</option>
+                                <option value="cyber-dots">赛博点线</option>
+                                <option value="matrix-code">矩阵代码</option>
+                                <option value="magazine-elegant">优雅杂志</option>
+                                <option value="poster-dynamic">动态海报</option>
+                                <option value="custom">自定义方案</option>
+                            </select>
+                        </div>
+                        
+                        <!-- 方案预览 -->
+                        <div class="setting-group">
+                            <label>方案预览：</label>
+                            <div id="scheme-preview" class="scheme-preview"></div>
+                        </div>
+                        
+                        <!-- 自定义方案参数 -->
+                        <div id="custom-scheme-controls" class="custom-scheme-controls">
+                            <h4>自定义方案参数</h4>
+                            
+                            <div class="setting-group">
+                                <label for="element-density">元素密度：</label>
+                                <input type="range" id="element-density" min="1" max="10" value="5">
+                                <span id="element-density-value">5</span>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="scheme-style">方案风格：</label>
+                                <select id="scheme-style">
+                                    <option value="tech">科技风格</option>
+                                    <option value="minimal">极简风格</option>
+                                    <option value="artistic">艺术风格</option>
+                                    <option value="geometric">几何风格</option>
+                                </select>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="color-harmony">色彩协调：</label>
+                                <select id="color-harmony">
+                                    <option value="monochrome">单色</option>
+                                    <option value="complementary">互补色</option>
+                                    <option value="analogous">类似色</option>
+                                    <option value="triadic">三角色</option>
+                                    <option value="random">随机</option>
+                                </select>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button id="generate-scheme" class="btn btn-primary">生成方案</button>
+                                <button id="save-scheme" class="btn btn-secondary">保存方案</button>
+                                <button id="load-scheme" class="btn btn-secondary">加载方案</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 装饰元素设置 -->
+                    <div class="decorative-elements">
+                        <h3>装饰元素</h3>
+                        
+                        <div class="setting-group">
+                            <label for="element-type">元素类型：</label>
+                            <select id="element-type">
+                                <option value="line">直线</option>
+                                <option value="dashed-line">虚线</option>
+                                <option value="circle">圆形</option>
+                                <option value="square">方形</option>
+                                <option value="triangle">三角形</option>
+                                <option value="dot">点</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-color">颜色：</label>
+                            <input type="color" id="element-color" value="#00ffff">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-size">大小：</label>
+                            <input type="range" id="element-size" min="1" max="100" value="20">
+                            <span id="element-size-value">20px</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-opacity">透明度：</label>
+                            <input type="range" id="element-opacity" min="0.1" max="1" step="0.1" value="0.8">
+                            <span id="element-opacity-value">80%</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-x">X位置：</label>
+                            <input type="range" id="element-x" min="0" max="100" value="20">
+                            <span id="element-x-value">20%</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-y">Y位置：</label>
+                            <input type="range" id="element-y" min="0" max="100" value="20">
+                            <span id="element-y-value">20%</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-width">宽度：</label>
+                            <input type="range" id="element-width" min="1" max="200" value="50">
+                            <span id="element-width-value">50px</span>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="element-height">高度：</label>
+                            <input type="range" id="element-height" min="1" max="200" value="2">
+                            <span id="element-height-value">2px</span>
+                        </div>
+                        
+                        <div class="action-buttons decor-buttons">
+                            <button id="add-element" class="btn btn-primary">添加元素</button>
+                            <button id="clear-elements" class="btn btn-secondary">清除所有</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="action-buttons">
+                    <button id="render-btn" class="btn btn-primary">渲染预览</button>
+                    <button id="export-png" class="btn btn-secondary">导出PNG</button>
+                    <button id="export-jpg" class="btn btn-secondary">导出JPG</button>
+                </div>
+            </div>
+
+            <!-- 右侧预览和输出区域 -->
+            <div class="output-section">
+                <div class="section-header">
+                    <h2>实时预览</h2>
+                </div>
+                <div class="preview-container">
+                    <div id="markdown-preview" class="markdown-content cyberpunk">
+                        <!-- Markdown渲染结果将显示在这里 -->
+                    </div>
+                </div>
+                <div id="exported-image" class="exported-image">
+                    <!-- 导出的图片将显示在这里 -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
